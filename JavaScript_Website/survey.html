@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Pizza Place</title>  
+
+    <!-- Bootstrap -->
+    <link href="assets/css/style.css" rel="stylesheet">    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <script>
+      /*This line of code initializes a String array with names for 3 pictures*/
+      var pictures = ['homePagePizza.jpg', 'recipe1.jpg', 'recipe2.jpg'];
+
+      /*
+        This function when called inserts button elements on the page which when pressed call their respective functions to carry out
+        a set of instructions.
+      */
+      function surveyForm(){
+          //this line of code will find an html element with a given value and insert the provided code into the element.
+          document.getElementById("surveyForm").innerHTML = (
+              "<button id='submission' onclick='comment()'> Click this button to provide feedback </button> <br/><br/>"
+            + "<button id='change' onclick='changeName()'> Click this button to change name in welcome message </button>"
+          );
+      }
+
+      /*
+        This function when called will use javascripts math.random function, which will select a number out of 0, 1, and 2.
+        This number will then used to reference a value from the pictures array above, allowing generation of a random image.
+      */
+      function randomPicture(){
+          //next line - gets a random number between 0, 1, 2
+          var i = Math.floor(Math.random() * 3);
+          //next line - set a path where a random image will be selected from
+          var path = "assets/images/" + pictures[i] ;
+          document.getElementById("randomPicture").src = path;
+      }
+
+      /*This function when called upon will prompt the user for a name and comment. It will validate the user input
+        and it will store the value into local storage when entered correctly.
+      */
+      function comment(){
+        // variable to store the the users name
+        var i = window.prompt("Enter Full Name:");
+        if(i == null){
+          window.alert("Name can not be null.");
+        }else if(i.length < 0){
+          window.alert("Invalid name entered.");
+        }else{
+          //next line - gets the comment
+          var x = window.prompt("Please enter comment:");
+          if(x == null){
+            window.alert("Comment can not be null.");
+          }else if(x.length < 0){
+            window.alert("Invalid comment entered.");
+          }else{
+            //next line - set the name and comment into a key/value pair in local storage.
+            localStorage.setItem(i, x);
+            window.alert("Following comment was added to localStorage '" + x + "', by " + i);
+            //next line - reload the window once done
+            window.location.reload();
+          }          
+        }
+      }
+
+      /*This function when fired will promp the user to enter a name
+        It will then replace the value of the name being displayed on the screen.
+      */
+      function changeName(){
+        //next line - stores the new name for the user
+        var i = window.prompt("Enter the new name: ");
+        if(i == null){
+          window.alert("Name entered is null.");
+        }else if(i.length < 0){
+          window.alert("Invalid name entered.");
+        }else{
+          //next line - saves the user name to local storage and save for when the user comes back to the page
+          localStorage.setItem('userName', i);
+          document.getElementById("name").innerHTML = "Current user " + i + " is providing feedback";
+          window.location.reload();
+        }
+      }
+
+      /*When called this function will loop through the local storage and print all
+        data into an html table. If no comments are available the code will output that
+        no comments are available to print.
+      */
+      function printComments(){
+        //next line - stores the entire element in the variable and then manipulates the inner text
+        var i = document.getElementById("comments");
+        i.innerHTML += "<tr><th colspan='100%'>Previously made Comments</th></tr>"
+        i.innerHTML +=  "<th>Name</th><th>Comment</th>";
+        //next line - go through the local storage and print out all key value pairs to the screen.
+        Object.keys(localStorage).forEach((key) => {
+          if ((localStorage.getItem(key)) && key != "userName"){
+            i.innerHTML += "<tr><td>" + key + "</td><td>" + localStorage.getItem(key) + "</td></tr>";
+          }
+        });
+      }
+
+      /*
+      This method will display the last modified date for the document
+      */
+      function lastModifiedDate(){
+        document.getElementById("lastModified").innerHTML = "Last Modified On: " + document.lastModified;
+      }
+
+      /*
+      This function will go through the local storage and check whether there is a KEY called userName.
+      If there is already a user name then it will print the user name to the screen.
+      Other wise it will prompt the user to enter their name and then print it to the screen.
+      */
+      function greeting(){
+        //next line - stores the user name in a variable after retreiving it from the local storage
+        var userName = localStorage['userName'];
+        // checks if the variable retreived above was ever set before
+        if(userName == null || userName == undefined){
+          //next line - stores the users name that was entered by the user
+          var i = window.prompt("Enter Users Name: ");
+          if (i == null || i.length <= 0){
+            window.alert("No user name added.");
+            document.getElementById("name").innerHTML = "Please provide feedback";
+          }else{
+            document.getElementById("name").innerHTML = i + " is providing feedback";
+            localStorage.setItem('userName', i);
+          }
+        }else{
+          document.getElementById("name").innerHTML = userName + " is providing feedback";
+        }
+      }
+      
+      /*
+      This function will run the moment a new window is created from another page or from within the page itself.
+      It calls the above listed functions in a given order to populate the page with the necessary data.
+      */
+      window.onload = function(){
+        greeting();
+        randomPicture();
+        surveyForm();
+        printComments();
+        lastModifiedDate();
+      }      
+    </script>
+  </head>
+
+  <body>
+    <section>
+      <div class="row">
+        <div class="top-banner">
+        <a href="index.html"> 
+          <img class="logo" src="assets/images/logo.jpg" alt="The Pizza Place logo picture" />
+        </a>
+        </div>
+      </div>
+      <ul class="topnav">
+          <li>
+            <a href="#" class="btn btn-outline-danger my-2 my-sm-0 loginbtn active">Survey</a>
+          </li>          
+          <li>
+            <a href="recipe.html" class="btn btn-outline-danger my-2 my-sm-0 loginbtn">Recipes</a>
+          </li>
+          <li>
+            <a href="order.html" class="btn btn-outline-danger my-2 my-sm-0 loginbtn">Order</a>
+          </li>
+          <li>
+            <a href="menu.html" class="btn btn-outline-danger my-2 my-sm-0 loginbtn">Menu</a>
+          </li>            
+          <li>
+            <a href="index.html" class="btn btn-outline-danger my-2 my-sm-0 loginbtn">Home</a>
+          </li>
+      </ul>
+    </section>
+    
+    <section>
+      <div class="row">  
+        <div class="container" id="wrapper">
+          <div class="col-sm-12  mb-4 mt-2 text-center">
+            <article class="img-info">
+              <h2 id="name"></h2>
+              <table class="table table-bordered" id="comments"></table>
+              <p id="surveyForm"></p>
+            </article>
+            <img class="homepage-image" id="randomPicture">
+          </div>        
+        </div>
+      </div>
+    </section>
+
+	  <!-- end body -->
+    <footer id="credits" class="text-center">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+			      <p>CREATED BY WAJAAT SHAH FOR IT-331-DL1</p><p id="lastModified"></p>
+            <p>
+              This website is developed as an educational project.
+              Certain materials are included 
+              under the fair use exemption of the U.S. Copyright Law and 
+              have been prepared according to the multimedia fair use guidelines 
+              and are restricted from further use.
+            </p>
+            <!--The following button opens a new browser-->
+            <p><input type="button" value="Fill out feedback form" onclick="window.open('survey.html', '_blank', 'toolbar=0,location=0,menubar=0')"></input></p>            
+            <p><a href="assets/css/style.css">Click Here to View CSS Style Sheet...</a></p>
+            <p><a href="workCited.html">Click here to view resources cited...</a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+    <script src="assets/js/jquery-3.4.1.min.js"></script> 
+    <!-- Include all compiled plugins (below), or include individual files as needed --> 
+    <script src="assets/js/popper.min.js"></script> 
+    <script src="assets/js/bootstrap-4.4.1.js"></script>
+  </body>
+</html>

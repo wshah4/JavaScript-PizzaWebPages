@@ -1,0 +1,206 @@
+/*
+Wajaat Shah
+IT-331-DL1
+Project 1 Style-Sheet
+*/
+
+.logo{
+	max-width: 350px;
+	background-color: #005C9A;
+}
+.logotext{
+	color: #fff!important;
+	margin-left: 5px;
+}
+
+.top-banner {
+	background-color: black;
+    width: 100%;	
+}
+
+.top-banner img{
+    margin-left: auto;
+    height: 100px;
+}
+
+.topnav {
+  width: 100%;
+  background-color: black;
+  overflow: hidden;
+  list-style: none;
+  padding: 10px;
+}
+
+.topnav .btn{
+    margin: 1%;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: red;
+}
+
+#wrapper{
+	padding: 5%;
+}
+
+.img-info img{
+	height: 10px;
+}
+
+.img-info{
+    width: 100%;
+}
+
+.img-info h2 {
+    font-family: arial;
+    font-size: 40px;
+    color: black;
+    line-height: 30px;
+    text-shadow: 5px 5px 10px red;
+}
+
+.img-info h4 {
+    margin-left: 5%;	
+    padding: 30px 30px 20px;
+    font-family: arial;
+    font-size: 20px;
+    color: black;
+    line-height: 30px;
+    text-shadow: 5px 5px 10px red;
+    
+}
+
+.img-info p {
+    margin-left: 5%;
+    font-family: arial;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.homepage-image{
+	width: 100%;
+	border: 10px solid black;
+    margin-top: 10%;
+	padding-left: 2%;
+	padding-right: 2%;
+	background-color: darkorange;
+}
+
+#credits{
+	padding: 5%;
+}
+
+#main-section-menu{
+    padding: 10%;
+}
+
+#menu-table th{
+    background-color: black;
+    color: orangered;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#menu-table td{
+    font-size: 20px;
+}
+
+#order-section{
+    width: 100%;
+}
+
+#order-section form{
+	padding: 2%;
+}
+
+#order-section label{
+	font-weight: bold;
+	margin-right: 50%;
+}
+
+#order-section input{
+	font-weight: bold;
+	margin-left: 50%;
+}
+
+#comments{
+	font-weight: bold;
+	margin-left: 50%;
+}
+
+.order-header{
+	background-color:black;
+	color: red;
+	height: 2%;
+	padding: 1%;
+}
+
+.order-header h3{
+	padding-left: 40%;
+}
+
+#rating{
+	margin-left: 50%;
+}
+
+.recipe-list{
+	list-style: square;
+}
+
+#comments{
+	margin-left: 4%;
+	margin-top: 12%;
+	margin-bottom: 12%;
+}
+
+@media only screen and (min-width: 786px){
+
+    .img-info h2{
+        padding: 20px 0px 0px;
+    }
+
+    .img-info p{
+        padding: 20px 0px 0px;
+    }
+
+    .homepage-image{
+        padding-top: 30px;
+    }
+
+}
+
+@media only screen and (min-width: 1000px){
+
+    .img-info{
+        width: 50%;
+        float: right;
+    }
+
+    .homepage-image{
+        padding-top: 0px;
+        width: 50%;
+        float: left;
+    }
+
+}
+
+.error {
+    color: red;
+}

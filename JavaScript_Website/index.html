@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Pizza Place</title>  
+    <!-- Bootstrap -->
+    <link href="assets/css/style.css" rel="stylesheet">    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <style>
+        table,th,td {
+          border : 1px solid black;
+          border-collapse: collapse;
+        }
+        th,td {
+          padding: 5px;
+        }
+        #imageAnimate{
+          height: 500px
+        }
+    </style>
+    <script type="text/JavaScript">
+      /*
+        This function below is used to get the heading from the document
+        and then change its value to whatever the user input in the input field.
+      */
+       function changeTitle() {
+        if (!document.getElementById || document.getElementById("in1").value == "") return;
+        var newtitle = document.changeform.newtitle.value;
+        var heading1 = document.getElementById("heading");
+        heading1.firstChild.nodeValue=newtitle;
+        document.getElementById("in1").value = "";
+      }
+      /*
+        This function below is used to get the heading from the document
+        and then change its color to whatever the user input in the input field.
+      */
+      function changeColor(){
+        if (!document.getElementById) return;
+        var newColor = document.changeform1.newColor.value;
+        var myElement = document.getElementById("heading");
+        myElement.style.color=newColor;
+        document.getElementById("in2").value = "";
+      }
+
+      /*
+        This function is called when the user hovers the mouse over the home page image
+        and changes the background color to red. Once the mouse is moved away from the
+        image the background color of the image returns back to orange.
+      */
+      function changeBackground(x){
+        document.getElementById("pic").style.backgroundColor = x;
+      }
+
+      /*
+        The function below is used to spin the logo and make the heading on the webpage
+        change colors.
+      */
+      function spin() {
+        //get the element using id
+        var img = document.getElementById('myimage');
+        var deg = 180;
+        //change the above element css to rotate the orientation of it
+        img.style.transform = "rotate(" + deg + "deg)";
+        var myElement = document.getElementById("heading");
+        myElement.style.color= "Black";
+        //wait half a second before the below line of code is executed
+        setTimeout(function() {
+          revSpin();
+        }, 500);
+      }
+
+      /*
+        The below function is called and it will rotate the logo 180 degrees.
+        and flash the heading with different colors.
+      */
+      function revSpin(){
+        var img = document.getElementById('myimage');
+        var deg = 360;
+        img.style.transform = "rotate(" + deg + "deg)";
+        var myElement = document.getElementById("heading");
+        myElement.style.color= "Red";
+      }
+
+      /*
+        This function is used as a listner, which when a button is clicked
+        it will use an interval to fire the spin() function and after an
+        interval of 5 seconds it will call the clearInterval function to 
+        stop the spinning of the logo and heading flash.
+      */
+      function rotateImage(){
+        var v = setInterval(spin, 1000);
+        setTimeout(function() {
+          clearInterval(v);
+        }, 5000);
+      }      
+
+      /*
+        This function will using AJAX to read XML items from the items.xml
+        file and calls the MyAJaxFunction defined below in order to populate
+        a table using AJAX capabilities.
+      */
+      function loadTable(){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+            myAjaxFunction(this);
+            //document.getElementById("heading").innerHTML = this.responseText;
+          }
+        };
+        xhttp.open("GET", "items.xml", true);
+        xhttp.send();
+      }
+
+      /*
+        This function will arrange the data from the xml request being passed
+        in as a parameter and then arrange the data in to a table.
+        Then it will display the table into the html document.
+        */
+      function myAjaxFunction(xml){
+        var i;
+        var xmlDoc = xml.responseXML;
+        var table = "<tr><th colspan='100%'> Menu </th></tr>";
+        table += "<tr><th>Name</th><th>Size</th><th>Price</th><th>Time</th></tr>";
+        var x = xmlDoc.getElementsByTagName("item");
+        for(i = 0; i < x.length; i++){
+           table += "<tr><td>" + 
+                  x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue +
+                  "</td><td>" +
+                  x[i].getElementsByTagName("size")[0].childNodes[0].nodeValue +
+                  "</td><td>" + 
+                  x[i].getElementsByTagName("price")[0].childNodes[0].nodeValue +
+                  "</td><td>" + 
+                  x[i].getElementsByTagName("time")[0].childNodes[0].nodeValue +
+                  "</td></tr>";
+        }
+        document.getElementById("table").innerHTML = table;
+      }
+      /*
+        This function will be used to toggle the homepage image with jQuery
+        animation.
+      */
+      $(document).ready(function(){
+        $("#animateButton").click(function(){
+          $("#imgAnimate").animate({
+            height: 'toggle'
+          });
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <section>
+      <div class="row">
+        <div class="top-banner">
+        <a href="#"> 
+          <img id="myimage" class="logo" src="assets/images/logo.jpg" alt="The Pizza Place logo picture" />
+        </a>
+        </div>
+      </div>
+      <ul class="topnav">
+          <li>
+            <a href="survey.html" class="btn btn-outline-danger my-2 my-sm-0 loginbtn">Survey</a>
+          </li>
+          <li>
+            <a href="recipe.html" class="btn btn-outline-danger my-2 my-sm-0 loginbtn">Recipes</a>
+          </li>
+          <li>
+            <a href="order.html" class="btn btn-outline-danger my-2 my-sm-0 loginbtn">Order</a>
+          </li>
+          <li>
+            <a href="menu.html" class="btn btn-outline-danger my-2 my-sm-0 loginbtn">Menu</a>
+          </li>            
+          <li>
+            <a href="#" class="btn btn-outline-danger my-2 my-sm-0 loginbtn active">Home</a>
+          </li>                         
+      </ul>
+    </section>
+    
+    <section>
+      <div class="row">  
+        <div class="container" id="wrapper">
+          <div class="col-sm-12  mb-4 mt-2 text-center">
+            <article class="img-info">
+              <h2 id="heading">Welcome !!!</h2>
+              <h4>Congratulation on making it to The Pizza Place home page...</h4>
+              <p>We are excited to have you here. The pizza place is a website dedicated to offering pizza enthusiasts with a variety of reciepes available.</p>
+              <p>Please use the navigation menu provided above to navigate the websites features and other pages.</p>
+              <form name="changeform">
+                <input type="text" id="in1" name="newtitle" size="20" />
+                <button type="button" onclick="changeTitle();">Change Heading!</button>
+              </form>
+              <br/>
+              <form name="changeform1">
+                <input type="text" id="in2" name="newColor" size="20" />
+                <button type="button" onclick="changeColor()">Change Heading Color!</button>
+              </form>
+              <br/>
+              <button type="button" onclick="rotateImage()">Spin Logo & Flash Heading Colors</button>
+              <br><br>
+              <button id="animateButton">Animate Image</button>
+              <br><br>
+              <button type="button" onclick="loadTable()">View Menu Using AJAX</button>
+              <br><br>
+              <table id="table"></table>
+            </article>
+            <div id="imgAnimate">
+              <img onmouseover="changeBackground('Red')" onmouseout="changeBackground('Orange')" id="pic" class="homepage-image" src="assets/images/homePagePizza.jpg" alt="Home page pizza picture. Retrieved from https://unsplash.com/photos/MQUqbmszGGM">
+            </div>
+            </div>        
+        </div>
+      </div>          
+    </section>
+
+	  <!-- end body -->
+    <footer id="credits" class="text-center">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+			      <p>CREATED BY WAJAAT SHAH FOR IT-331-DL1</p>
+            <p>
+              This website is developed as an educational project.
+              Certain materials are included 
+              under the fair use exemption of the U.S. Copyright Law and 
+              have been prepared according to the multimedia fair use guidelines 
+              and are restricted from further use.
+            </p>
+            <!--The following button opens a new browser-->
+            <p><input type="button" value="Fill out feedback form" onclick="window.open('survey.html', '_blank', 'toolbar=0,location=0,menubar=0')"></input></p>
+            <p><a href="assets/css/style.css">Click Here to View CSS Style Sheet...</a></p>
+            <p><a href="workCited.html">Click here to view resources cited...</a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+    <script src="assets/js/jquery-3.4.1.min.js"></script> 
+    <!-- Include all compiled plugins (below), or include individual files as needed --> 
+    <script src="assets/js/popper.min.js"></script> 
+    <script src="assets/js/bootstrap-4.4.1.js"></script>
+  </body>
+</html>

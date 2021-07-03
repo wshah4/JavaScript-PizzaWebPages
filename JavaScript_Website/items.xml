@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<items>
+	<item>
+		<name>Cheese Pizza</name>
+		<size>Small</size>
+		<price>$10.00</price>
+		<time>7 minutes</time>
+	</item>
+	<item>
+		<name>Cheese Pizza</name>
+		<size>Medium</size>
+		<price>$12.00</price>
+		<time>10 minutes</time>
+	</item>
+	<item>
+		<name>Cheese Pizza</name>
+		<size>Large</size>
+		<price>$14.00</price>
+		<time>12 minutes</time>
+	</item>
+	<item>
+		<name>Pepperoni Pizza</name>
+		<size>Small</size>
+		<price>$12.00</price>
+		<time>8 minutes</time>
+	</item>
+	<item>
+		<name>Pepperoni Pizza</name>
+		<size>Medium</size>
+		<price>$13.00</price>
+		<time>10 minutes</time>
+	</item>
+	<item>
+		<name>Pepperoni Pizza</name>
+		<size>Large</size>
+		<price>$15.00</price>
+		<time>13 minutes</time>
+	</item>
+	<item>
+		<name>Specialty Pizza</name>
+		<size>Small</size>
+		<price>$11.00</price>
+		<time>8 minutes</time>
+	</item>
+	<item>
+		<name>Specialty Pizza</name>
+		<size>Medium</size>
+		<price>$14.00</price>
+		<time>10 minutes</time>
+	</item>
+	<item>
+		<name>Specialty Pizza</name>
+		<size>Large</size>
+		<price>$15.00</price>
+		<time>15 minutes</time>
+	</item>	
+</items>

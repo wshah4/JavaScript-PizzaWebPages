@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>The Pizza Place</title>  
+    <!-- Bootstrap -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <body>
+    <section>
+        <div class="row">
+          <div class="top-banner">
+          <a href="index.html"> 
+            <img class="logo" src="assets/images/logo.jpg" alt="Pizza Place Logo Picture" />
+          </a>
+          </div>
+        </div>
+        <ul class="topnav">
+            <li>
+              <a href="survey.html" class="btn btn-outline-danger my-2 my-sm-0 loginbtn">Survey</a>
+            </li>
+            <li>
+              <a href="recipe.html" class="btn btn-outline-danger my-2 my-sm-0 loginbtn">Recipes</a>
+            </li>
+            <li>
+              <a href="order.html" class="btn btn-outline-danger my-2 my-sm-0 loginbtn active">Order</a>
+            </li>
+            <li>
+              <a href="menu.html" class="btn btn-outline-danger my-2 my-sm-0 loginbtn">Menu</a>
+            </li>            
+            <li>
+              <a href="index.html" class="btn btn-outline-danger my-2 my-sm-0 loginbtn">Home</a>
+            </li>                         
+        </ul>
+      </section>
+    
+    <section>
+      <div class="row">   
+        <div class="container" id="wrapper">
+            <div class="col-sm-12" id="order-section">
+                <div class="row order-header">
+                    <h3>Create an Order</h3>
+                </div>
+                <form id="myForm">                    
+                    <p><label>Customer Name:</label><input type="text" name="customerName" id="name" placeholder="John Doe" ></p><br/>
+                    <p><label>Email:</label><input type="email" name="email" id="email" placeholder="johnDoe@email.com" ></p><br/>
+                    <p><label>Number:</label><input type="tel" name="phoneNumber" id="phoneNumber" placeholder="123-123-1234" ></p><br/>
+                    <p><label>Order Date:</label><input name= "dates" id="datepicker" type="text" /></p><br>
+                    <p><label>Pizza Type:</label><input list="pizzaTypes" id="pizzaType" placeholder="Select a pizza style" >
+                            <datalist id="pizzaTypes">
+                                <option value="Cheese">
+                                <option value="Pepperoni">
+                                <option value="Veggie">
+                                <option value="Hawaiian Style">
+                      </datalist></p><br/>
+                    <p><label>Size:</label>
+                      <select name="rating" id="rating">
+                              <option selected disabled>- Choose a size -</option>
+                            <option value="small">Small</option>
+                            <option value="medium">Medium</option>
+                            <option value="Large">Large</option>
+                        </select></p><br/>
+
+                    <p><label>Box color:</label><input type="color" id="favcolor" name="favcolor" value="#ff0000"></p><br/>
+                    
+                    <p><label>Comments?</label><textarea id="comments" rows="5" cols="30"></textarea></p><br/>
+                    
+                    <p><label>Would you like to be on our mailing list?</label></p>
+                      <p><label for="yes">Yes</label>
+                          <input type="radio" id="yes" value="Yes"></p>
+                      <p><label for="no">No</label>
+                        <input type="radio" id="no" value="No"></p>
+                      <p><label for="dontCare">Don't Care</label>
+                        <input type="radio" id="dontCare" value="Dont Care'"></p><br/>
+                    <input type="submit" value="Submit"><br/><br/>
+                    <input type="reset">
+                    <div id="error-note"></div>
+                  </form>
+            </div>
+        </div>
+      </div>          
+    </section>
+
+	  <!-- end body -->
+    <footer id="credits" class="text-center">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-12">
+			      <p>CREATED BY WAJAAT SHAH FOR IT-331-DL1</p>
+            <p>
+              This website is developed as an educational project.
+              Certain materials are included 
+              under the fair use exemption of the U.S. Copyright Law and 
+              have been prepared according to the multimedia fair use guidelines 
+              and are restricted from further use.
+            </p>      
+            <p><input type="button" value="Fill out feedback form" onclick="window.open('survey.html', '_blank', 'toolbar=0,location=0,menubar=0')"></input></p>
+            <p><a href="assets/css/style.css">Click Here to View CSS Style Sheet...</a></p>
+            <p><a href="workCited.html">Click here to view resources cited...</a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+      /*
+        The following code will be used to validate the customers input using jquery form validation.
+        The input will be tested against the listed rules for the designated input field name.
+        Depending upon the input, the user will see an error message if the validation is not passed
+      */
+      $(document).ready(function() {
+          $("#myForm").validate({
+          rules: {
+            customerName: {
+              required: true,
+              minlength: 2,
+              maxlength: 20,
+            },
+            email:{
+              required: true,
+              email: true
+            },
+            dates:{
+              required: true
+            },
+            phoneNumber:{
+              required: true,
+              minlength: 10,
+              maxlength: 13,
+              digits: true
+            }
+          },
+          messages:{
+            customerName: {
+              required: "Please enter your name",
+              minlength: "Minimum length is 2",
+              maxlength: "Max length is 20",
+              lettersonly: "Only letters allowed"
+            },
+            email:{
+              required: "Email is required",
+              email: "Please follow email format johndoe@email.com"
+            },
+            phoneNumber:{
+              required: "Phone number is required",
+              minlength: "Minimum is 10 digits",
+              maxlength: "Maximum is 123 digits",
+              digits: "Only enter numbers"
+            }
+          }
+        });
+      });
+    </script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      /*
+        The following lines of code are used to assign the Jquery datepicker calender to
+        the input field designated for the customer order date.
+      */
+      $( function() {
+        $( "#datepicker" ).datepicker();
+      } );
+    </script>    
+    <script src="assets/js/popper.min.js"></script> 
+    <script src="assets/js/bootstrap-4.4.1.js"></script>
+
+  </body>
+</html>
